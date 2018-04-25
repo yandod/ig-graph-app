@@ -1,1 +1,6 @@
 .vagrant
+composer.phar
+composer.lock
+composer-setup.php
+vendor/
+src/www.pid
