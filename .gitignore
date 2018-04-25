@@ -4,3 +4,4 @@ composer.lock
 composer-setup.php
 vendor/
 src/www.pid
+hh_autoload.json

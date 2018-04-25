@@ -2,6 +2,7 @@
     "name": "yandod/ig-graph-app",
     "type": "project",
     "require": {
+        "facebook/xhp-lib": "2.x",
         "facebook/graph-sdk": "^5.6"
     },
     "autoload": {
