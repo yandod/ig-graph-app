@@ -18,8 +18,29 @@ class Model {
   }
 
   public function getBasicInfo(string $ig_business_id) {
-    $response = $this->fb->get('/'.$ig_business_id.'?fields=biography,followers_count,follows_count,id,ig_id,media_count,name,profile_picture_url,username,website');
+    $response = $this->fb->get(
+      '/'.$ig_business_id.
+      '?fields=biography,followers_count,follows_count,id,ig_id,media_count,name,profile_picture_url,username,website'
+    );
     return $response;
   }
 
+  public function getDailyImpressions(string $ig_business_id) {
+    $date = new DateTime();
+    $range = $this->genSinceUntil($date);
+    $response = $this->fb->get(
+      '/'.$ig_business_id.
+      '/insights?metric=impressions,reach,profile_views&period=day'.
+      '&since='.$range['since'].'&until='.$range['until']
+    );
+    return $response;
+  }
+
+  public function genSinceUntil(DateTime $date){
+    $range = Map{
+      'until' => $date->getTimestamp(),
+      'since' => $date->modify('-30 day')->getTimestamp()
+    };
+    return $range;
+  }
 }
